@@ -1,0 +1,47 @@
+{
+	"name": "playwright-api-testing-framework",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"description": "Framework de testing de APIs con Playwright + TypeScript (cliente HTTP dirigido por env, asserts contractuales de shape, scaffold de performance k6). Esqueleto reutilizable — portfolio.",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"test": "playwright test",
+		"test:uat": "cross-env ENV=uat playwright test",
+		"test:prod": "cross-env ENV=prod playwright test",
+		"report": "playwright show-report reports/html",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write \"**/*.{ts,js,json,md,yml}\"",
+		"format:check": "prettier --check \"**/*.{ts,js,json,md,yml}\"",
+		"typecheck": "tsc --noEmit",
+		"k6:smoke": "k6 run k6/smoke.js",
+		"k6:load": "k6 run k6/load.js",
+		"k6:stress": "k6 run k6/stress.js",
+		"k6:latency": "k6 run k6/latency.js",
+		"prepare": "husky || echo \"husky skipped (no .git)\""
+	},
+	"devDependencies": {
+		"@commitlint/cli": "^19.6.0",
+		"@commitlint/config-conventional": "^19.6.0",
+		"@playwright/test": "^1.50.0",
+		"@types/node": "^22.10.0",
+		"@typescript-eslint/eslint-plugin": "^8.20.0",
+		"@typescript-eslint/parser": "^8.20.0",
+		"cross-env": "^7.0.3",
+		"dotenv": "^16.4.7",
+		"eslint": "^9.18.0",
+		"eslint-config-prettier": "^9.1.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^15.4.0",
+		"prettier": "^3.4.2",
+		"tsx": "^4.19.2",
+		"typescript": "^5.7.3"
+	},
+	"lint-staged": {
+		"*.ts": ["eslint --fix", "prettier --write"],
+		"*.{json,md,yml,yaml}": ["prettier --write"]
+	}
+}

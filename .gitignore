@@ -1,0 +1,35 @@
+node_modules/
+.env
+.env.*
+!.env.example
+
+# MCP config (contiene API keys hardcodeadas — nunca commitear)
+.mcp.json
+
+# Playwright outputs
+reports/
+playwright-report/
+test-results/
+
+# Postman snapshots con potenciales secrets
+scripts/snapshots/
+
+# Tipos generados desde openapi.yaml (artefacto regenerable: npm run generate:types)
+tests/generated/
+
+# Python — schemathesis subproject (reports/ ya ignorado arriba)
+schemathesis/.venv/
+schemathesis/.hypothesis/
+**/__pycache__/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

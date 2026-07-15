@@ -1,0 +1,62 @@
+# .github/workflows/k6-tests.yml
+# Performance tests con k6 contra el entorno configurado (BASE_URL).
+# OPT-IN: workflow_dispatch (manual) — regla SCOPE.md: no generar carga sin luz verde.
+# Aislado del suite funcional (api-tests.yml).
+
+name: k6-tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Escenario k6 a correr'
+        required: true
+        default: 'smoke'
+        type: choice
+        options:
+          - smoke
+          - load
+          - stress
+
+jobs:
+  k6:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment: test
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Preparar carpeta de reportes
+        run: mkdir -p reports/k6
+
+      - name: Run k6 ${{ inputs.target }}
+        env:
+          BASE_URL: ${{ vars.BASE_URL || 'https://apps-test.example.com' }}
+          MAGIIS_API_PREFIX: ${{ vars.MAGIIS_API_PREFIX || 'magiis-v0.2' }}
+          LOGIN_USER: ${{ secrets.MAGIIS_TEST_USER }}
+          LOGIN_PASSWORD: ${{ secrets.MAGIIS_TEST_PASSWORD }}
+          LOGIN_ROLE: ${{ vars.LOGIN_ROLE || 'ROLE_CARRIER' }}
+          MAGIIS_TEST_CARRIER_ID: ${{ vars.MAGIIS_TEST_CARRIER_ID || '1040' }}
+          MAGIIS_TEST_DRIVER_ID: ${{ vars.MAGIIS_TEST_DRIVER_ID || '1203' }}
+        run: |
+          k6 run \
+            --summary-export "reports/k6/summary-${{ inputs.target }}.json" \
+            -e BASE_URL="$BASE_URL" \
+            -e MAGIIS_API_PREFIX="$MAGIIS_API_PREFIX" \
+            -e LOGIN_USER="$LOGIN_USER" \
+            -e LOGIN_PASSWORD="$LOGIN_PASSWORD" \
+            -e LOGIN_ROLE="$LOGIN_ROLE" \
+            -e MAGIIS_TEST_CARRIER_ID="$MAGIIS_TEST_CARRIER_ID" \
+            -e MAGIIS_TEST_DRIVER_ID="$MAGIIS_TEST_DRIVER_ID" \
+            "k6/${{ inputs.target }}.js"
+
+      - name: Upload k6 summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: k6-summary-${{ inputs.target }}
+          path: reports/k6/
+          retention-days: 14
