@@ -1,17 +1,34 @@
 {
-	"name": "playwright-api-testing-framework",
+	"name": "magiis-api-e2e",
 	"version": "0.1.0",
 	"private": true,
 	"type": "module",
-	"description": "Framework de testing de APIs con Playwright + TypeScript (cliente HTTP dirigido por env, asserts contractuales de shape, scaffold de performance k6). Esqueleto reutilizable — portfolio.",
+	"description": "Playwright API test suite for magiis-be (backend Magiis). Scope: API only. UI lives en magiis-carrier-v2-e2e (frontend) y magiis-playwright (gateway).",
 	"engines": {
 		"node": ">=22"
 	},
 	"scripts": {
 		"test": "playwright test",
+		"allure:gen": "allure generate ./allure-results -o allure-report",
+		"allure:open": "allure open allure-report",
+		"test:flows": "playwright test tests/specs/_flows",
+		"test:controllers": "playwright test tests/specs/controllers",
+		"test:test": "cross-env ENV=test playwright test",
 		"test:uat": "cross-env ENV=uat playwright test",
 		"test:prod": "cross-env ENV=prod playwright test",
+		"test:xray:mg682": "tsx scripts/run-xray-atr.ts mg682",
+		"test:unit:reporters": "tsx --test tests/utils/reporters/xray-consolidate.unit.ts",
 		"report": "playwright show-report reports/html",
+		"fetch:collection": "tsx scripts/fetch-postman-collection.ts",
+		"generate:specs": "tsx scripts/generate-specs-from-postman.ts",
+		"catalog:from-be": "tsx scripts/extract-be-catalog.ts",
+		"sanitize:snapshot": "tsx scripts/sanitize-postman-snapshot.ts",
+		"generate:openapi": "tsx scripts/generate-openapi-from-source.ts",
+		"generate:openapi:snapshot": "tsx scripts/generate-openapi-from-postman.ts",
+		"k6:gen-endpoints": "node scripts/gen-k6-endpoints.mjs",
+		"generate:types": "openapi-typescript openapi.yaml -o tests/generated/magiis-api.d.ts",
+		"coverage": "node scripts/coverage-report.mjs",
+		"serve:swagger": "swagger-ui-watcher openapi.yaml --port 8088",
 		"lint": "eslint . --max-warnings=0",
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write \"**/*.{ts,js,json,md,yml}\"",
@@ -20,6 +37,7 @@
 		"k6:smoke": "k6 run k6/smoke.js",
 		"k6:load": "k6 run k6/load.js",
 		"k6:stress": "k6 run k6/stress.js",
+		"k6:sweep": "k6 run k6/read-sweep.js",
 		"k6:latency": "k6 run k6/latency.js",
 		"prepare": "husky || echo \"husky skipped (no .git)\""
 	},
@@ -27,21 +45,35 @@
 		"@commitlint/cli": "^19.6.0",
 		"@commitlint/config-conventional": "^19.6.0",
 		"@playwright/test": "^1.50.0",
+		"@types/js-yaml": "^4.0.9",
 		"@types/node": "^22.10.0",
+		"@types/oracledb": "^7.0.1",
 		"@typescript-eslint/eslint-plugin": "^8.20.0",
 		"@typescript-eslint/parser": "^8.20.0",
+		"allure": "^3.14.3",
+		"allure-playwright": "^3.10.2",
 		"cross-env": "^7.0.3",
 		"dotenv": "^16.4.7",
 		"eslint": "^9.18.0",
 		"eslint-config-prettier": "^9.1.0",
 		"husky": "^9.1.7",
+		"js-yaml": "^4.1.1",
 		"lint-staged": "^15.4.0",
+		"openapi-typescript": "7.13.0",
+		"oracledb": "^7.0.1",
+		"postman-to-openapi": "^3.0.1",
 		"prettier": "^3.4.2",
+		"swagger-ui-watcher": "^2.1.14",
 		"tsx": "^4.19.2",
 		"typescript": "^5.7.3"
 	},
 	"lint-staged": {
-		"*.ts": ["eslint --fix", "prettier --write"],
-		"*.{json,md,yml,yaml}": ["prettier --write"]
+		"*.ts": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.{json,md,yml,yaml}": [
+			"prettier --write"
+		]
 	}
 }

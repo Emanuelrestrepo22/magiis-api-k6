@@ -1,0 +1,92 @@
+# .github/workflows/api-tests.yml
+# Workflow GitHub Actions para tests API contra MAGIIS-TEST.
+# Workflow_dispatch (manual) por default — alineado con la regla operativa:
+# "no ejecutar HTTP contra Magiis sin luz verde explícita".
+#
+# Gate de calidad (lint + typecheck + format) previo a tests — contrato de
+# consistencia del portafolio QA (ver CLAUDE.md). El repo usa pnpm.
+
+name: api-tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      target:
+        description: 'Suite a correr'
+        required: true
+        default: 'flows'
+        type: choice
+        options:
+          - flows
+          - controllers
+          - all
+
+jobs:
+  # ============================================
+  # Gate de calidad — corre siempre, sin tocar el backend
+  # ============================================
+  quality-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - name: Lint
+        run: pnpm lint
+      - name: Typecheck
+        run: pnpm typecheck
+      - name: Format check
+        run: pnpm format:check
+
+  # ============================================
+  # Ejecución de la suite — depende del gate verde
+  # ============================================
+  api-test:
+    needs: quality-checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    environment: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'pnpm'
+      - run: pnpm install --frozen-lockfile
+      - name: Install Playwright browsers deps
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Setup .env.test desde secrets
+        run: |
+          cat > .env.test <<EOF
+          ENV=test
+          BASE_URL=${{ vars.BASE_URL || 'https://apps-test.example.com' }}
+          MAGIIS_API_PREFIX=${{ vars.MAGIIS_API_PREFIX || 'magiis-v0.2/' }}
+          AUTH_API_URL=${{ vars.AUTH_API_URL || 'https://apps-test.example.com/magiis-v0.2/auth/login' }}
+          LOGIN_USER=${{ secrets.MAGIIS_TEST_USER }}
+          LOGIN_PASSWORD=${{ secrets.MAGIIS_TEST_PASSWORD }}
+          LOGIN_ROLE=ROLE_CARRIER
+          MAGIIS_TEST_CARRIER_ID=${{ vars.MAGIIS_TEST_CARRIER_ID || '1040' }}
+          MAGIIS_TEST_DRIVER_ID=${{ vars.MAGIIS_TEST_DRIVER_ID || '1203' }}
+          EOF
+      - name: Run suite ${{ inputs.target }}
+        run: |
+          case "${{ inputs.target }}" in
+            flows)       pnpm run test:flows ;;
+            controllers) pnpm run test:controllers ;;
+            all)         pnpm test ;;
+          esac
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: |
+            reports/
+            test-results/
+          retention-days: 14

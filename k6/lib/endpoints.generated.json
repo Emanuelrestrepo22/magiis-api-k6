@@ -1,0 +1,586 @@
+[
+	{
+		"path": "/admins/adminTypes",
+		"name": "admins/adminTypes"
+	},
+	{
+		"path": "/admins/carriers",
+		"name": "admins/carriers"
+	},
+	{
+		"path": "/admins/carriers/list",
+		"name": "admins/carriers/list"
+	},
+	{
+		"path": "/admins/dashboard",
+		"name": "admins/dashboard"
+	},
+	{
+		"path": "/admins/paginated",
+		"name": "admins/paginated"
+	},
+	{
+		"path": "/admins/parameters/countries/paginated",
+		"name": "admins/parameters/countries/paginated"
+	},
+	{
+		"path": "/admins/parameters/general",
+		"name": "admins/parameters/general"
+	},
+	{
+		"path": "/admins/permissions",
+		"name": "admins/permissions"
+	},
+	{
+		"path": "/admins/permissions/paginated",
+		"name": "admins/permissions/paginated"
+	},
+	{
+		"path": "/affiCheckingAccount/companies",
+		"name": "affiCheckingAccount/companies"
+	},
+	{
+		"path": "/affiCheckingAccount/getAffiliateCheckingAccountPaymentMethodsManual",
+		"name": "affiCheckingAccount/getAffiliateCheckingAccountPaymentMethodsManual"
+	},
+	{
+		"path": "/affiCheckingAccount/getPaymentMethods",
+		"name": "affiCheckingAccount/getPaymentMethods"
+	},
+	{
+		"path": "/affiCheckingAccount/paginated",
+		"name": "affiCheckingAccount/paginated"
+	},
+	{
+		"path": "/affiOneShotTravel/getEstablishedAffiOSTravels",
+		"name": "affiOneShotTravel/getEstablishedAffiOSTravels"
+	},
+	{
+		"path": "/affiOneShotTravel/received/paginated",
+		"name": "affiOneShotTravel/received/paginated"
+	},
+	{
+		"path": "/affiOneShotTravel/requested/paginated",
+		"name": "affiOneShotTravel/requested/paginated"
+	},
+	{
+		"path": "/affiliateAgreement/paginated",
+		"name": "affiliateAgreement/paginated"
+	},
+	{
+		"path": "/api/applications/paginated",
+		"name": "api/applications/paginated"
+	},
+	{
+		"path": "/api/carrier/{carrierId}/paginated",
+		"name": "api/carrier/{carrierId}/paginated"
+	},
+	{
+		"path": "/api/roles",
+		"name": "api/roles"
+	},
+	{
+		"path": "/api/whatsapp-business/carriers/{carrierId}",
+		"name": "api/whatsapp-business/carriers/{carrierId}"
+	},
+	{
+		"path": "/api/whatsapp-business/carriers/{carrierId}/scheduled-trips-status",
+		"name": "api/whatsapp-business/carriers/{carrierId}/scheduled-trips-status"
+	},
+	{
+		"path": "/billing/admin/carrierServices/searchSettlements",
+		"name": "billing/admin/carrierServices/searchSettlements"
+	},
+	{
+		"path": "/billing/admin/history/initialData/{carrierId}",
+		"name": "billing/admin/history/initialData/{carrierId}"
+	},
+	{
+		"path": "/billing/admin/initialData/{carrierId}",
+		"name": "billing/admin/initialData/{carrierId}"
+	},
+	{
+		"path": "/billing/admin/liquidations/paginated",
+		"name": "billing/admin/liquidations/paginated"
+	},
+	{
+		"path": "/billing/carriers/summary/paginated",
+		"name": "billing/carriers/summary/paginated"
+	},
+	{
+		"path": "/billing/carriers/summary/totals",
+		"name": "billing/carriers/summary/totals"
+	},
+	{
+		"path": "/billing/surrender/paginated",
+		"name": "billing/surrender/paginated"
+	},
+	{
+		"path": "/billing/surrender/summary",
+		"name": "billing/surrender/summary"
+	},
+	{
+		"path": "/cards/{carrierId}/cardTypes",
+		"name": "cards/{carrierId}/cardTypes"
+	},
+	{
+		"path": "/carrier/{carrierId}/contractors/paginated",
+		"name": "carrier/{carrierId}/contractors/paginated"
+	},
+	{
+		"path": "/carrier/{carrierId}/contractors/totals",
+		"name": "carrier/{carrierId}/contractors/totals"
+	},
+	{
+		"path": "/carrierAccounts/solicitude/paginated",
+		"name": "carrierAccounts/solicitude/paginated"
+	},
+	{
+		"path": "/carrierContractorLiquidations/findContractors/{carrierId}/paginated",
+		"name": "carrierContractorLiquidations/findContractors/{carrierId}/paginated"
+	},
+	{
+		"path": "/carrierContractorLiquidations/{carrierId}/paginated",
+		"name": "carrierContractorLiquidations/{carrierId}/paginated"
+	},
+	{
+		"path": "/carrierDriverLiquidations/findDrivers/{carrierId}/paginated",
+		"name": "carrierDriverLiquidations/findDrivers/{carrierId}/paginated"
+	},
+	{
+		"path": "/carrierOwnerLiquidations/findOwners/{carrierId}/paginated",
+		"name": "carrierOwnerLiquidations/findOwners/{carrierId}/paginated"
+	},
+	{
+		"path": "/carrierOwnerLiquidations/{carrierId}/findOwners",
+		"name": "carrierOwnerLiquidations/{carrierId}/findOwners"
+	},
+	{
+		"path": "/carrierUserLiquidations/findPassengers/{carrierId}/paginated",
+		"name": "carrierUserLiquidations/findPassengers/{carrierId}/paginated"
+	},
+	{
+		"path": "/carrierUserLiquidations/{carrierId}/paginated",
+		"name": "carrierUserLiquidations/{carrierId}/paginated"
+	},
+	{
+		"path": "/carriers/all",
+		"name": "carriers/all"
+	},
+	{
+		"path": "/carriers/carrierUser/{carrierId}/documents/paginated",
+		"name": "carriers/carrierUser/{carrierId}/documents/paginated"
+	},
+	{
+		"path": "/carriers/carrierUser/{carrierId}/paginated",
+		"name": "carriers/carrierUser/{carrierId}/paginated"
+	},
+	{
+		"path": "/carriers/travelsCurrentStatus/carrier/{carrierId}",
+		"name": "carriers/travelsCurrentStatus/carrier/{carrierId}"
+	},
+	{
+		"path": "/carriers/{carrierId}",
+		"name": "carriers/{carrierId}"
+	},
+	{
+		"path": "/carriers/{carrierId}/availability",
+		"name": "carriers/{carrierId}/availability"
+	},
+	{
+		"path": "/carriers/{carrierId}/carrierArea",
+		"name": "carriers/{carrierId}/carrierArea"
+	},
+	{
+		"path": "/carriers/{carrierId}/carrierZone",
+		"name": "carriers/{carrierId}/carrierZone"
+	},
+	{
+		"path": "/carriers/{carrierId}/checkMercadoPagoAvailable",
+		"name": "carriers/{carrierId}/checkMercadoPagoAvailable"
+	},
+	{
+		"path": "/carriers/{carrierId}/checkingAccounts/paginated",
+		"name": "carriers/{carrierId}/checkingAccounts/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/clients",
+		"name": "carriers/{carrierId}/clients"
+	},
+	{
+		"path": "/carriers/{carrierId}/clients/paginated",
+		"name": "carriers/{carrierId}/clients/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/clients/totalClients",
+		"name": "carriers/{carrierId}/clients/totalClients"
+	},
+	{
+		"path": "/carriers/{carrierId}/conceptTaxes",
+		"name": "carriers/{carrierId}/conceptTaxes"
+	},
+	{
+		"path": "/carriers/{carrierId}/conceptTaxesForDriver",
+		"name": "carriers/{carrierId}/conceptTaxesForDriver"
+	},
+	{
+		"path": "/carriers/{carrierId}/dashboard/driversSurrenderState",
+		"name": "carriers/{carrierId}/dashboard/driversSurrenderState"
+	},
+	{
+		"path": "/carriers/{carrierId}/driverCashAdvance/paginated/toSurrend",
+		"name": "carriers/{carrierId}/driverCashAdvance/paginated/toSurrend"
+	},
+	{
+		"path": "/carriers/{carrierId}/driverparameter",
+		"name": "carriers/{carrierId}/driverparameter"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers",
+		"name": "carriers/{carrierId}/drivers"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/allDrivers",
+		"name": "carriers/{carrierId}/drivers/allDrivers"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/dashboard",
+		"name": "carriers/{carrierId}/drivers/dashboard"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/driver",
+		"name": "carriers/{carrierId}/drivers/driver"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/driversFleet/paginated",
+		"name": "carriers/{carrierId}/drivers/driversFleet/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/driversForCombo",
+		"name": "carriers/{carrierId}/drivers/driversForCombo"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/lastPlace",
+		"name": "carriers/{carrierId}/drivers/lastPlace"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/paginated",
+		"name": "carriers/{carrierId}/drivers/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/drivers/totalDrivers",
+		"name": "carriers/{carrierId}/drivers/totalDrivers"
+	},
+	{
+		"path": "/carriers/{carrierId}/emailsTemplates",
+		"name": "carriers/{carrierId}/emailsTemplates"
+	},
+	{
+		"path": "/carriers/{carrierId}/frequentDestination/paginated",
+		"name": "carriers/{carrierId}/frequentDestination/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/noClients",
+		"name": "carriers/{carrierId}/noClients"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameter",
+		"name": "carriers/{carrierId}/parameter"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameters",
+		"name": "carriers/{carrierId}/parameters"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameters/driverCarrierParams",
+		"name": "carriers/{carrierId}/parameters/driverCarrierParams"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameters/getDriverTripsManagement",
+		"name": "carriers/{carrierId}/parameters/getDriverTripsManagement"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameters/gralCarrierPaymentsFormAndSpeed",
+		"name": "carriers/{carrierId}/parameters/gralCarrierPaymentsFormAndSpeed"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameters/paxGralParams",
+		"name": "carriers/{carrierId}/parameters/paxGralParams"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameters/paymentMethodsConfig",
+		"name": "carriers/{carrierId}/parameters/paymentMethodsConfig"
+	},
+	{
+		"path": "/carriers/{carrierId}/parameters/searchingMethod",
+		"name": "carriers/{carrierId}/parameters/searchingMethod"
+	},
+	{
+		"path": "/carriers/{carrierId}/preferences",
+		"name": "carriers/{carrierId}/preferences"
+	},
+	{
+		"path": "/carriers/{carrierId}/recurringTrip/paginated",
+		"name": "carriers/{carrierId}/recurringTrip/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/recurringTripCanceled/paginated",
+		"name": "carriers/{carrierId}/recurringTripCanceled/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/serviceTypes",
+		"name": "carriers/{carrierId}/serviceTypes"
+	},
+	{
+		"path": "/carriers/{carrierId}/serviceTypes/availableIcons",
+		"name": "carriers/{carrierId}/serviceTypes/availableIcons"
+	},
+	{
+		"path": "/carriers/{carrierId}/serviceTypes/employees",
+		"name": "carriers/{carrierId}/serviceTypes/employees"
+	},
+	{
+		"path": "/carriers/{carrierId}/serviceTypes/forAppPax",
+		"name": "carriers/{carrierId}/serviceTypes/forAppPax"
+	},
+	{
+		"path": "/carriers/{carrierId}/settlementParameters/paginated",
+		"name": "carriers/{carrierId}/settlementParameters/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/settlements/paginated",
+		"name": "carriers/{carrierId}/settlements/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/shortcuts",
+		"name": "carriers/{carrierId}/shortcuts"
+	},
+	{
+		"path": "/carriers/{carrierId}/specialRateTrigger",
+		"name": "carriers/{carrierId}/specialRateTrigger"
+	},
+	{
+		"path": "/carriers/{carrierId}/specialRateTrigger/parameters",
+		"name": "carriers/{carrierId}/specialRateTrigger/parameters"
+	},
+	{
+		"path": "/carriers/{carrierId}/termsAndConditions",
+		"name": "carriers/{carrierId}/termsAndConditions"
+	},
+	{
+		"path": "/carriers/{carrierId}/termsAndConditionsFlag",
+		"name": "carriers/{carrierId}/termsAndConditionsFlag"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/driversSurrenderSummary",
+		"name": "carriers/{carrierId}/travels/driversSurrenderSummary"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/paginated",
+		"name": "carriers/{carrierId}/travels/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/paginated-driver",
+		"name": "carriers/{carrierId}/travels/paginated-driver"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/paginated-driver-historic",
+		"name": "carriers/{carrierId}/travels/paginated-driver-historic"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/surrendersReports/paginated",
+		"name": "carriers/{carrierId}/travels/surrendersReports/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/surrendersReports/totals",
+		"name": "carriers/{carrierId}/travels/surrendersReports/totals"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/surrendersSummarizedTotals",
+		"name": "carriers/{carrierId}/travels/surrendersSummarizedTotals"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/toSurrend",
+		"name": "carriers/{carrierId}/travels/toSurrend"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/toTravelsSurrender",
+		"name": "carriers/{carrierId}/travels/toTravelsSurrender"
+	},
+	{
+		"path": "/carriers/{carrierId}/travels/totals",
+		"name": "carriers/{carrierId}/travels/totals"
+	},
+	{
+		"path": "/carriers/{carrierId}/vehicles",
+		"name": "carriers/{carrierId}/vehicles"
+	},
+	{
+		"path": "/carriers/{carrierId}/vehicles/paginated",
+		"name": "carriers/{carrierId}/vehicles/paginated"
+	},
+	{
+		"path": "/carriers/{carrierId}/vehicles/withoutOwner",
+		"name": "carriers/{carrierId}/vehicles/withoutOwner"
+	},
+	{
+		"path": "/checking-accounts/admin/{carrierId}/detail/paginated",
+		"name": "checking-accounts/admin/{carrierId}/detail/paginated"
+	},
+	{
+		"path": "/checking-accounts/admin/{carrierId}/totals",
+		"name": "checking-accounts/admin/{carrierId}/totals"
+	},
+	{
+		"path": "/checking-accounts/carrier/{carrierId}/clients/paginated",
+		"name": "checking-accounts/carrier/{carrierId}/clients/paginated"
+	},
+	{
+		"path": "/checking-accounts/carrier/{carrierId}/clients/totals",
+		"name": "checking-accounts/carrier/{carrierId}/clients/totals"
+	},
+	{
+		"path": "/checking-accounts/carrier/{carrierId}/drivers/paginated",
+		"name": "checking-accounts/carrier/{carrierId}/drivers/paginated"
+	},
+	{
+		"path": "/checking-accounts/carrier/{carrierId}/movements",
+		"name": "checking-accounts/carrier/{carrierId}/movements"
+	},
+	{
+		"path": "/checking-accounts/carrier/{carrierId}/owners/paginated",
+		"name": "checking-accounts/carrier/{carrierId}/owners/paginated"
+	},
+	{
+		"path": "/config/serverInfo",
+		"name": "config/serverInfo"
+	},
+	{
+		"path": "/costCenters",
+		"name": "costCenters"
+	},
+	{
+		"path": "/data/csv/mapperAvailableFields",
+		"name": "data/csv/mapperAvailableFields"
+	},
+	{
+		"path": "/data/csv/mapperTravelFiles/{carrierId}",
+		"name": "data/csv/mapperTravelFiles/{carrierId}"
+	},
+	{
+		"path": "/data/csv/mapperTravels/{carrierId}",
+		"name": "data/csv/mapperTravels/{carrierId}"
+	},
+	{
+		"path": "/data/documents/{carrierId}/expiration",
+		"name": "data/documents/{carrierId}/expiration"
+	},
+	{
+		"path": "/data/epayments/status",
+		"name": "data/epayments/status"
+	},
+	{
+		"path": "/data/ratingReason",
+		"name": "data/ratingReason"
+	},
+	{
+		"path": "/flights/getAirlines",
+		"name": "flights/getAirlines"
+	},
+	{
+		"path": "/flights/getAirports",
+		"name": "flights/getAirports"
+	},
+	{
+		"path": "/magiisEmergency/driverSos/{carrierId}",
+		"name": "magiisEmergency/driverSos/{carrierId}"
+	},
+	{
+		"path": "/magiisServicesCost/allServicesCost",
+		"name": "magiisServicesCost/allServicesCost"
+	},
+	{
+		"path": "/magiisServicesCost/search",
+		"name": "magiisServicesCost/search"
+	},
+	{
+		"path": "/mapper/{carrierId}/conversionProfile",
+		"name": "mapper/{carrierId}/conversionProfile"
+	},
+	{
+		"path": "/multiregion/countries",
+		"name": "multiregion/countries"
+	},
+	{
+		"path": "/multiregion/countries/list",
+		"name": "multiregion/countries/list"
+	},
+	{
+		"path": "/multiregion/currenciesValuesSummary/paginated",
+		"name": "multiregion/currenciesValuesSummary/paginated"
+	},
+	{
+		"path": "/multiregion/currentCurrenciesValues",
+		"name": "multiregion/currentCurrenciesValues"
+	},
+	{
+		"path": "/multiregion/operative/countries",
+		"name": "multiregion/operative/countries"
+	},
+	{
+		"path": "/multiregion/timezones",
+		"name": "multiregion/timezones"
+	},
+	{
+		"path": "/odn/vehicleTypes",
+		"name": "odn/vehicleTypes"
+	},
+	{
+		"path": "/operationCharacteristic",
+		"name": "operationCharacteristic"
+	},
+	{
+		"path": "/passengers/carrier/{carrierId}",
+		"name": "passengers/carrier/{carrierId}"
+	},
+	{
+		"path": "/passengers/carrier/{carrierId}/forFamily",
+		"name": "passengers/carrier/{carrierId}/forFamily"
+	},
+	{
+		"path": "/passengers/{carrierId}/withCheckingAccountByCarrier",
+		"name": "passengers/{carrierId}/withCheckingAccountByCarrier"
+	},
+	{
+		"path": "/places/getPlace",
+		"name": "places/getPlace"
+	},
+	{
+		"path": "/transportTypes",
+		"name": "transportTypes"
+	},
+	{
+		"path": "/transportTypes/clusters",
+		"name": "transportTypes/clusters"
+	},
+	{
+		"path": "/transportTypes/paginated",
+		"name": "transportTypes/paginated"
+	},
+	{
+		"path": "/users/paginated",
+		"name": "users/paginated"
+	},
+	{
+		"path": "/usertrail/getbycarrier/{carrierId}",
+		"name": "usertrail/getbycarrier/{carrierId}"
+	},
+	{
+		"path": "/vehicles/types",
+		"name": "vehicles/types"
+	},
+	{
+		"path": "/vehicles/{carrierId}/types",
+		"name": "vehicles/{carrierId}/types"
+	}
+]

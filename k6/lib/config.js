@@ -51,7 +51,7 @@ export const config = {
 };
 
 // Construye la URL completa: {baseUrl}/{prefix}/{path}, normalizando barras.
-// `path` puede incluir query string (ej. 'resource/{id}/items/paginated?page=1').
+// `path` puede incluir query string (ej. 'carriers/1040/travels/paginated?page=1').
 export function buildUrl(path) {
 	const clean = String(path).replace(/^\/+/, '');
 	return `${config.baseUrl}/${config.magiisPrefix}/${clean}`.replace(/([^:])\/\/+/g, '$1/');

@@ -1,5 +1,5 @@
 # .github/workflows/k6-tests.yml
-# Performance tests con k6 contra el entorno configurado (BASE_URL).
+# Performance tests con k6 contra MAGIIS-TEST.
 # OPT-IN: workflow_dispatch (manual) — regla SCOPE.md: no generar carga sin luz verde.
 # Aislado del suite funcional (api-tests.yml).
 

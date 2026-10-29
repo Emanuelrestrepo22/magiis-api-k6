@@ -48,15 +48,15 @@ GitHub Secrets / GitLab Variables (ver `docs/SCOPE.md`).
 ### Setear vars — PowerShell (Windows)
 
 ```powershell
-$env:LOGIN_USER = "<tu-usuario>"
-$env:LOGIN_PASSWORD = "<tu-password>"
+$env:LOGIN_USER = "usuario"
+$env:LOGIN_PASSWORD = "password"
 k6 run k6/smoke.js
 ```
 
 ### Setear vars — bash / con flags `-e`
 
 ```bash
-k6 run -e LOGIN_USER=<tu-usuario> -e LOGIN_PASSWORD=<tu-password> k6/smoke.js
+k6 run -e LOGIN_USER=usuario -e LOGIN_PASSWORD=password k6/smoke.js
 ```
 
 ## 3. Comandos de ejecución

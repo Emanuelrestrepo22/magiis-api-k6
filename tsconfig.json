@@ -15,7 +15,24 @@
 		"forceConsistentCasingInFileNames": true,
 		"isolatedModules": true,
 		"types": ["node"],
-		"lib": ["ES2022"]
+		"lib": ["ES2022"],
+		"baseUrl": ".",
+		"paths": {
+			"@TestBase": ["tests/TestBase.ts"],
+			"@components/*": ["tests/components/*"],
+			"@clients/*": ["tests/clients/*"],
+			"@config/*": ["tests/config/*"],
+			"@helpers": ["tests/helpers/index.ts"],
+			"@helpers/*": ["tests/helpers/*"],
+			"@fixtures/*": ["tests/fixtures/*"],
+			"@TestContext": ["tests/components/TestContext.ts"],
+			"@api/*": ["tests/components/api/*"],
+			"@db/*": ["tests/components/db/*"],
+			"@steps/*": ["tests/components/steps/*"],
+			"@utils/*": ["tests/utils/*"],
+			"@data/*": ["tests/data/*"],
+			"@schemas/*": ["tests/generated/*"]
+		}
 	},
 	"include": ["tests/**/*.ts", "scripts/**/*.ts", "*.ts", "*.config.ts"],
 	"exclude": ["node_modules", "reports", "scripts/snapshots"]

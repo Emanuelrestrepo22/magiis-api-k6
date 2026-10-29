@@ -11,6 +11,9 @@ export type RuntimeConfig = {
 	role: AppRole;
 	carrierId: number;
 	driverId: number;
+	/** Perfil de credenciales activo (`null` = credenciales base). Se expone para que la evidencia
+	 *  declare CON QUÉ carrier corrió: en UAT conviven mercados con catálogos distintos. */
+	loginProfile: string | null;
 };
 
 export type Credentials = {
@@ -60,11 +63,39 @@ export function resolveAuthApiUrl(): string {
 	return `${resolveBaseUrl()}/${resolveMagiisPrefix()}/auth/login`;
 }
 
+/**
+ * Perfil de credenciales activo. Un mismo ambiente puede tener carriers de mercados distintos
+ * (p. ej. UAT tiene uno argentino y uno de EE.UU.) y el catálogo de direcciones difiere entre
+ * ellos, así que el perfil cambia QUÉ datos ve la suite, no solo con qué usuario entra.
+ *
+ * Sin `LOGIN_PROFILE` → claves base (`LOGIN_USER`). Con `LOGIN_PROFILE=usa` → claves sufijadas
+ * (`LOGIN_USER_USA`). El sufijo se normaliza a MAYÚSCULAS.
+ */
+export function resolveLoginProfile(): string | null {
+	const raw = process.env.LOGIN_PROFILE?.trim();
+	return raw ? raw.toUpperCase() : null;
+}
+
 export function resolveCredentials(): Credentials {
-	const username = readEnv('LOGIN_USER');
-	const password = readEnv('LOGIN_PASSWORD');
-	if (!username) throw new Error(`Missing LOGIN_USER in .env.${getCurrentEnv()}`);
-	if (!password) throw new Error(`Missing LOGIN_PASSWORD in .env.${getCurrentEnv()}`);
+	const profile = resolveLoginProfile();
+	const suffix = profile ? `_${profile}` : '';
+	const userKey = `LOGIN_USER${suffix}`;
+	const passKey = `LOGIN_PASSWORD${suffix}`;
+
+	const username = readEnv(userKey);
+	const password = readEnv(passKey);
+
+	// Un perfil pedido y ausente FALLA. Caer a las credenciales base dejaría la suite corriendo
+	// contra otro carrier —otro mercado, otro catálogo de direcciones— mientras el reporte diría
+	// que corrió con el perfil pedido: evidencia real atribuida al actor equivocado.
+	if (!username || !password) {
+		const missing = [!username ? userKey : null, !password ? passKey : null].filter(Boolean).join(' y ');
+		const hint = profile
+			? `Perfil LOGIN_PROFILE=${profile.toLowerCase()}: falta ${missing} en .env.${getCurrentEnv()}. ` +
+				`Definilas o quitá LOGIN_PROFILE para usar las credenciales base.`
+			: `Falta ${missing} en .env.${getCurrentEnv()}.`;
+		throw new Error(hint);
+	}
 	return { username, password };
 }
 
@@ -84,6 +115,7 @@ export function getRuntimeConfig(): RuntimeConfig {
 		authApiUrl: resolveAuthApiUrl(),
 		role: resolveRole(),
 		carrierId: parseIntEnv('MAGIIS_TEST_CARRIER_ID', 1040),
-		driverId: parseIntEnv('MAGIIS_TEST_DRIVER_ID', 1203)
+		driverId: parseIntEnv('MAGIIS_TEST_DRIVER_ID', 1203),
+		loginProfile: resolveLoginProfile()
 	};
 }

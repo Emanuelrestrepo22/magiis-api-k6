@@ -6,7 +6,8 @@
 //   - Query params, headers extras, timeouts, failOnStatusCode
 
 import type { APIRequestContext, APIResponse } from '@playwright/test';
-import { getRuntimeConfig, resolveCredentials, resolveAuthApiUrl } from '../config/runtime';
+import { getRuntimeConfig, resolveCredentials, resolveAuthApiUrl } from '@config/runtime';
+import { redactSecrets } from '@utils/redact';
 
 export type MagiisRequestOptions = {
 	params?: Record<string, string | number | boolean | string[] | number[]>;
@@ -109,7 +110,16 @@ export class MagiisApiClient {
 			failOnStatusCode: opts.failOnStatusCode ?? false
 		};
 		if (body !== undefined && body !== null) reqOpts.data = body;
-		return this.request.fetch(url, reqOpts);
+		try {
+			return await this.request.fetch(url, reqOpts);
+		} catch (err) {
+			// Playwright embebe el call log completo (headers incluidos) en el mensaje
+			// de error cuando el fetch falla a nivel de red (ej. "socket hang up") --
+			// redactar ACÁ, en el origen, es la primera barrera antes de que ese
+			// mensaje viaje a result.error y de ahí a cualquier reporter/log.
+			if (err instanceof Error) err.message = redactSecrets(err.message);
+			throw err;
+		}
 	}
 
 	// ─── Métodos públicos ─────────────────────────────────────────────────────

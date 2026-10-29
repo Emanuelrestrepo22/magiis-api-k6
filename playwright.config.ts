@@ -1,13 +1,13 @@
 // playwright.config.ts
 // Config Playwright API-only. NO usa browsers — solo APIRequestContext.
-// Config Playwright API-only — apunta al backend vía env (BASE_URL/MAGIIS_API_PREFIX).
+// Backend ref: magiis-be release/v1.72.1. Workspace Postman MAGIIS-QA-API-v2.
 
 import { defineConfig } from '@playwright/test';
 import dotenv from 'dotenv';
 import path from 'node:path';
 
-// Resuelve .env.<env> según ENV (test|uat|prod). Default = test.
-const env = process.env.ENV ?? 'test';
+// Resuelve .env.<env> según ENV. Ambientes del proyecto: uat|prod (test fuera). Default = uat.
+const env = process.env.ENV ?? 'uat';
 dotenv.config({ path: path.resolve(process.cwd(), `.env.${env}`) });
 
 export default defineConfig({
@@ -22,8 +22,14 @@ export default defineConfig({
 	reporter: [
 		['list'],
 		['html', { outputFolder: 'reports/html', open: 'never' }],
-		['junit', { outputFile: 'reports/junit.xml' }]
-	],
+		['junit', { outputFile: 'reports/junit.xml' }],
+		// Allure OPT-IN (ALLURE=1) — condicional para no romper el runner default.
+		...(process.env.ALLURE ? [['allure-playwright', { resultsDir: 'allure-results', detail: true }]] : []),
+		// Xray OPT-IN (XRAY=1) — emite reports/xray-results.json (contrato de consistencia del portafolio).
+		...(process.env.XRAY
+			? [['./tests/utils/reporters/xray-reporter.ts', { outputFile: 'reports/xray-results.json' }]]
+			: [])
+	] as import('@playwright/test').ReporterDescription[],
 	use: {
 		// baseURL se resuelve dentro de los specs vía MagiisApiClient + runtime config.
 		// No lo seteamos acá para no fijar el prefijo de Magiis (que cambia entre versiones).

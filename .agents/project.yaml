@@ -1,0 +1,51 @@
+# Project configuration consumed by AI agents (Claude, Cursor, Gemini, Codex, etc.)
+# Alineado con el orquestador de metodología: agentic-qa-boilerplate (HUB KATA).
+# Variables snake_case; el AI mapea {{PROJECT_KEY}} -> project.project_key léxicamente.
+#
+# ROL DE ESTE REPO: capa API del portafolio QA MAGIIS. Automatiza el contrato del
+# backend magiis-be (Spring/Oracle) con Playwright APIRequestContext (sin browser).
+# La metodología (KATA, trazabilidad, ambientes) se define en el HUB; aquí se aplica
+# el "contrato de consistencia" (ver CLAUDE.md).
+
+project:
+  project_name: MAGIIS Carrier (API) # dominio Carrier — capa API
+  project_key: MG # MIGRACIÓN MX→MG (2026-07-17): Carrier pasa a MAGIIS-4 (MG, jira-native). Keys nuevas = MG-XXXX. Las MX-XXXX en specs son históricas (pendiente mapeo MX→MG).
+  webapp_domain: null # N/A — proyecto API-only
+
+backend:
+  backend_repo: C:\Users\Erika\OneDrive - MAGIIS USA LLC (1)\Escritorio\magiis-be # READ-ONLY (ground truth del openapi)
+  backend_stack: Spring Boot (Java 8) + JPA/Hibernate + Spring Security/JWT; deploy prefix magiis-v0.2/. ~63 controllers / ~802 operaciones (openapi.yaml, source-first)
+  backend_entry: src/main/java/com/magiis/magiis
+
+frontend:
+  frontend_repo: null # N/A en la capa API (ver magiis-carrier-v2-e2e para UI)
+  frontend_stack: null
+  frontend_entry: null
+
+database:
+  db_type: Oracle # ojdbc8, Oracle10gDialect. DBHub MCP requiere modo thick; validación DB por cliente externo o SQLcl MCP
+
+issue_tracker:
+  issue_tracker: Jira # MAGIIS Jira Cloud
+  issue_tracker_cli: acli # Atlassian CLI
+  atlassian_url: https://magiis.atlassian.net # cloudId 56c215ad-7fd1-43cd-81a3-ee41d2a2aafd
+
+testing:
+  default_env: uat # env seguro de ejecución (TEST fuera de alcance por SCOPE.md; PROD solo read-only)
+  tms_cli: acli # Modalidad jira-native: MG (MAGIIS-4) NO tiene Xray → ATP/ATR/bugs como comentarios estructurados. Xray solo para histórico MX/AF.
+  # Contrato de trazabilidad canónico (HUB): annotation type:'tms' con la key MG-XXXX + type:'tc' para subcasos.
+  smoke_tag: '@critical' # equivalencia con el HUB; documentar mapeo si el repo usa otro tag
+
+# Per-environment config. Este repo opera SOLO uat + prod (test/qa quedan fuera por SCOPE.md).
+# Vocabulario HUB: qa=TEST · staging=UAT · production=PROD. Mapear, no renombrar los .env.*.
+environments:
+  uat: # ENV=uat → apps-uat (staging en vocabulario HUB). Env de ejecución.
+    web_url: null # N/A (API-only)
+    api_url: https://apps-uat.magiis.com/magiis-v0.2/ # BASE_URL + MAGIIS_API_PREFIX
+    db_mcp: null # TODO: cuenta Oracle read-only (SQLcl MCP / DBHub thick)
+    api_mcp: openapi # mcp-openapi-schema-explorer sobre ./openapi.yaml (read-only)
+  production: # ENV=prod → api.apps (production en vocabulario HUB). SOLO read-only.
+    web_url: null
+    api_url: https://api.apps.magiis.com/ # prefijo VACÍO en prod
+    db_mcp: null
+    api_mcp: openapi

@@ -1,0 +1,8 @@
+# Contract fuzzing (Schemathesis) — magiis-api-e2e
+# Versiones fijadas a lo instalado y validado con Python 3.13.7.
+# schemathesis 3.x: soporta schemathesis.from_path(...) + @schema.parametrize().
+# NO subir a 4.x sin re-adaptar test_contract.py (la API de carga cambió).
+schemathesis==3.39.16
+pytest==8.4.2
+requests==2.34.2
+python-dotenv==1.2.2
